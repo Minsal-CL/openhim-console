@@ -20,7 +20,7 @@ WORKDIR /usr/share/nginx/html
 COPY --from=build /app/dist  ./
 
 # Copiar configuración personalizada de NGINX
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/sites-enabled/openhim-console
 
 # Copiar script de entrada personalizado
 COPY ./docker-entrypoint.sh /usr/local/bin/
