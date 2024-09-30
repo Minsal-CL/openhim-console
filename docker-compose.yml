@@ -41,13 +41,13 @@ services:
       KC_OPENHIM_CLIENT_ID: ${KC_OPENHIM_CLIENT_ID}
     
     ports:
-      - "8081:8081"
+      - "8081:8080"
       - "5000:5000"
       - "5001:5001"
     networks:
       - openhim
     healthcheck:
-      test: "curl -sSk https://openhim-core:8081/heartbeat || exit 1"
+      test: "curl -sSk https://openhim-core:8080/heartbeat || exit 1"
       interval: 30s
       timeout: 30s
       retries: 3
