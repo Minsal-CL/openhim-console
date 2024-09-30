@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Set defaults for the environment variables
 export OPENHIM_CONSOLE_PROTOCOL=${OPENHIM_CONSOLE_PROTOCOL:-"https"}
 export OPENHIM_CONSOLE_HOSTPATH=${OPENHIM_CONSOLE_HOSTPATH:-""}
@@ -13,4 +15,16 @@ export KC_OPENHIM_CLIENT_ID=${KC_OPENHIM_CLIENT_ID:-"openhim-oauth"}
 
 cat config/default-env.json | envsubst | tee config/default.json
 
+# Verificar si el certificado ya existe, de lo contrario, generarlo
+if [ ! -f "/etc/letsencrypt/live/$YOUR_HOSTNAME/fullchain.pem" ]; then
+    /usr/local/bin/certbot-auto certonly --webroot -w /usr/share/nginx/html -d $YOUR_HOSTNAME
+    chmod 750 /etc/letsencrypt/live/
+    chmod 750 /etc/letsencrypt/archive/
+    chown :nginx /etc/letsencrypt/live/ /etc/letsencrypt/archive/
+fi
+
+# Agregar la renovación automática de certificados al crontab
+echo "0 0 * * * /usr/local/bin/certbot-auto renew --no-self-upgrade >> /var/log/letsencrypt-renewal.log" | crontab -
+
+# Iniciar NGINX
 nginx -g "daemon off;"
