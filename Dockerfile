@@ -25,10 +25,8 @@ COPY nginx.conf /etc/nginx/sites-enabled/openhim-console
 # Copiar script de entrada personalizado
 COPY ./docker-entrypoint.sh /usr/local/bin/
 
-# Descargar Certbot
-RUN apk add --no-cache wget \
-    && wget https://dl.eff.org/certbot-auto -O /usr/local/bin/certbot-auto \
-    && chmod a+x /usr/local/bin/certbot-auto
+# Instalar Certbot
+RUN apk add --no-cache certbot
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
