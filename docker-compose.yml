@@ -16,7 +16,7 @@ services:
   openhim-core:
     container_name: openhim-core
     build: 
-      context: ./openhim-core  # Directorio donde se encuentra el Dockerfile
+      context: ./  # Directorio donde se encuentra el Dockerfile
     restart: unless-stopped
     environment:
       mongo_url: "mongodb://mongo-db/openhim-development"

@@ -2,7 +2,7 @@
   "version": "1.18.2",
   "minimumCoreVersion": "5.0.0",
   "protocol": "https",
-  "host": "https://15.228.12.79/",
+  "host": "15.228.12.79",
   "hostPath": "",
   "port": 8081,
   "title": "Admin Console",
@@ -13,7 +13,7 @@
   "mediatorLastHeartbeatDangerSeconds": 120,
   "showLoginForm": true,
   "ssoEnabled": false,
-  "keyCloakUrl": "http://15.228.12.79:9088",
+  "keyCloakUrl": "http://localhost:9088",
   "keyCloakRealm": "platform-realm",
   "keyCloakClientId": "openhim-oauth"
 }

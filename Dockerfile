@@ -1,7 +1,7 @@
 # Build Production Console in Node
 FROM node:14.17-alpine as build
 
-RUN apk add --no-cache git
+RUN apk add git
 
 WORKDIR /app
 
@@ -16,17 +16,10 @@ FROM nginx:mainline-alpine
 
 WORKDIR /usr/share/nginx/html
 
-# Copiar el proyecto construido desde el contenedor anterior
 COPY --from=build /app/dist  ./
+COPY ./nginx.conf /etc/nginx/sites-enabled/openhim-console
 
-# Copiar configuración personalizada de NGINX
-COPY nginx.conf /etc/nginx/sites-enabled/openhim-console
-
-# Copiar script de entrada personalizado
 COPY ./docker-entrypoint.sh /usr/local/bin/
-
-# Instalar Certbot
-RUN apk add --no-cache certbot
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
