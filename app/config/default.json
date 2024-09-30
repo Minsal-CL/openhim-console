@@ -1,10 +1,10 @@
 {
   "version": "1.18.2",
   "minimumCoreVersion": "5.0.0",
-  "protocol": "https",
-  "host": "localhost",
+  "protocol": "http",
+  "host": "http://15.228.12.79/",
   "hostPath": "",
-  "port": 8080,
+  "port": 8081,
   "title": "Admin Console",
   "footerTitle": "OpenHIM Administration Console",
   "footerPoweredBy": "<a href='http://openhim.org/' target='_blank'>Powered by OpenHIM</a>",
@@ -13,7 +13,7 @@
   "mediatorLastHeartbeatDangerSeconds": 120,
   "showLoginForm": true,
   "ssoEnabled": false,
-  "keyCloakUrl": "http://localhost:9088",
+  "keyCloakUrl": "http://15.228.12.79:9088",
   "keyCloakRealm": "platform-realm",
   "keyCloakClientId": "openhim-oauth"
 }
